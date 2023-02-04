@@ -8,7 +8,10 @@ public class RootManager : MonoBehaviour
 	public GameObject RootType; //what to instantiate when roots grow
 
 	[Header("Gameplay Variables")]
+	[Tooltip("cooldown in seconds how often roots grow")]
 	public float growCooldown = 0.25f;
+	[Tooltip("how far roots grow every time they grow")]
+	public float growDistance = 3.0f;
 	
 	[Header("Internal")]
 	public Root BaseRoot; //resisted the temptation to call this RootRoot
@@ -35,7 +38,9 @@ public class RootManager : MonoBehaviour
     {
 	    if (Time.time - lastGrowEvent > growCooldown)
 	    {
-		    CurrentRoot.Grow(direction);
+		    Vector2 n = direction.normalized;
+		    //CurrentRoot.Grow(n * growDistance);
+		    CurrentRoot.Grow(n * growDistance);
 		    lastGrowEvent = Time.time;
 	    }
 	    else

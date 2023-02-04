@@ -1337,7 +1337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2370796322520998836, guid: 137d20af562c14aa9a485ad228f8b0f0, type: 3}
       propertyPath: growCooldown
-      value: 0.01
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8451433005380522561, guid: 137d20af562c14aa9a485ad228f8b0f0, type: 3}
       propertyPath: m_RootOrder
