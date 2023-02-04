@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public bool isLevelActive;
     
     public bool isGameOver;
-
+    public bool isPlayerAlive;
+    
     public GameObject playerCharacter;
 
     public GameObject rootManager;
@@ -30,6 +31,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }
