@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpButtonPressed = false;
     private int jumpsMade = 0;
     public int maxJumps = 2;
+    public int hitPoints = 5;
     internal void Move(Vector3 vector3)
     {
         throw new NotImplementedException();
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -46,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 move = new Vector3(horizontal, 0, 0);
-        controller.Move(move * (Time.deltaTime * playerSpeed));
+        controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (move != Vector3.zero)
         {
@@ -54,25 +57,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Vertical") > 0))
+        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && groundedPlayer)
         {
-            if (groundedPlayer && jumpsMade <= maxJumps)
-            {
-                Debug.Log("Going Up");
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-                jumpsMade++;
-            }
-            else if (jumpsMade == 1 && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)))
-            {
-                Debug.Log("Double Jump");
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-                jumpsMade++;
-            }
-        }
-
-        if (controller.isGrounded)
-        {
-            jumpsMade = 0;
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
         // Limit the maximum jump height
         if (playerVelocity.y < -Mathf.Sqrt(jumpHeight * 3.0f * gravityValue))
@@ -80,7 +67,9 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = -Mathf.Sqrt(jumpHeight * 3.0f * gravityValue);
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        // Increase the magnitude of gravityValue to make the player fall faster
+        float fallMultiplier = 2.0f;
+        playerVelocity.y += gravityValue * fallMultiplier * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
         if ((Input.GetKeyDown(KeyCode.DownArrow)) || Input.GetKey(KeyCode.S))
@@ -89,5 +78,13 @@ public class PlayerController : MonoBehaviour
         }
 
 
+    }
+    public void DecreaseHitPoints()
+    {
+        hitPoints--;
+        if (hitPoints <= 0)
+        {
+            // Trigger death or game over event
+        }
     }
 }
