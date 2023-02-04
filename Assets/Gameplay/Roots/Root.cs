@@ -7,8 +7,6 @@ using UnityEngine;
 public class Root : MonoBehaviour
 {
 	public List<rootPoint> points;
-	public float startThickness;
-	public float endThickness;
 	private RootRenderer r;
 	public Root(){
 		points = new List<rootPoint>();
@@ -16,23 +14,19 @@ public class Root : MonoBehaviour
 		points.Add(new rootPoint());
 	}
 
-	public void Grow(Vector2 direction) //extends the root into a direction
+	public rootPoint Grow(Vector2 direction) //extends the root into a direction
 	{
 		Vector2 newPointPosition = points[points.Count - 1].position + direction;
 		points.Add(new rootPoint(newPointPosition));
 
 		//refresh root visuals
 		r.RefreshRootVisuals(points);
+		return points[points.Count - 1]; //return the newly created point
 	}
+	
     // Start is called before the first frame update
     void Start()
     {
 	    r = GetComponent<RootRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

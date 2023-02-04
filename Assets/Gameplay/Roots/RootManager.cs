@@ -14,19 +14,22 @@ public class RootManager : MonoBehaviour
 	public float growDistance = 3.0f;
 	
 	[Header("Internal")]
-	public Root BaseRoot; //resisted the temptation to call this RootRoot
-	public Root CurrentRoot; //the root the player is modifying at the moment
+	public Root baseRoot; //resisted the temptation to call this RootRoot
+	public Root currentRoot; //the root the player is modifying at the moment
+	public rootPoint currentPoint; //when the root grows, that should be the last point
+	private RootInputVisualizer visualizer;
 	
 	//timing
 	public float lastGrowEvent;
 
 	void Start()
 	{
+		visualizer = GetComponentInChildren<RootInputVisualizer>();
 		lastGrowEvent = Time.time;
 	    if (RootType)
 	    {
-		    BaseRoot = Instantiate(RootType, transform).GetComponent<Root>();
-		    CurrentRoot = BaseRoot;
+		    baseRoot = Instantiate(RootType, transform).GetComponent<Root>();
+		    currentRoot = baseRoot;
 	    }
 	    else
 	    {
@@ -39,8 +42,8 @@ public class RootManager : MonoBehaviour
 	    if (Time.time - lastGrowEvent > growCooldown)
 	    {
 		    Vector2 n = direction.normalized;
-		    //CurrentRoot.Grow(n * growDistance);
-		    CurrentRoot.Grow(n * growDistance);
+		    currentPoint = currentRoot.Grow(n * growDistance);
+		    visualizer.setRootPoint(currentPoint);
 		    lastGrowEvent = Time.time;
 	    }
 	    else
@@ -49,6 +52,10 @@ public class RootManager : MonoBehaviour
 	    }
     }
 
+    public void Branch(rootPoint p)
+    {
+	    
+    }
     // Update is called once per frame
     void Update()
     {
