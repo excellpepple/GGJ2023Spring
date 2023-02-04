@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Vertical") > 0 ))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Vertical") > 0))
         {
             if (groundedPlayer && jumpsMade <= maxJumps)
             {
@@ -62,9 +62,14 @@ public class PlayerController : MonoBehaviour
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
                 jumpsMade++;
             }
-            
+            else if (jumpsMade == 1 && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)))
+            {
+                Debug.Log("Double Jump");
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                jumpsMade++;
+            }
         }
-        
+
         if (controller.isGrounded)
         {
             jumpsMade = 0;
