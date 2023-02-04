@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GrowTowardsPlayerBehaviour : MonoBehaviour
 {
-    public GameObject player;
+    //public GameObject player;
     private Vector2 growthDirection;
     public RootManager rm;
+    public Vector3 lastGrowPos;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        lastGrowPos = transform.position;
+        rm = FindObjectOfType<RootManager>();
     }
 
     // Update is called once per frame
@@ -19,14 +21,18 @@ public class GrowTowardsPlayerBehaviour : MonoBehaviour
     {
         if (rm)
         {
-            GetGrowthDirection();
-            rm.Grow(growthDirection);
+            //only grow roots if we moved far away enough from the last root point.
+            if (Vector3.Distance(lastGrowPos, transform.position) >= rm.growDistance)
+            {
+                GetGrowthDirection();
+                lastGrowPos = rm.Grow(growthDirection);
+            }
         }
     }
 
     void GetGrowthDirection()
     {
-        var position = player.transform.position;
+        var position = transform.position;
         Vector2 playerPosition = new Vector2(position.x, position.y);
         growthDirection = playerPosition - rm.currentPoint.position;
     }
