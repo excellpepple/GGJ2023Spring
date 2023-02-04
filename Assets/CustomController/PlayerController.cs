@@ -8,13 +8,13 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
-    private float jumpHeight = 1.0f;
+    public float playerSpeed = 2.0f;
+    public float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
     private bool isGrounded = false;
     private bool jumpButtonPressed = false;
     private int jumpsMade = 0;
-    private int maxJumps = 2;
+    public int maxJumps = 2;
     internal void Move(Vector3 vector3)
     {
         throw new NotImplementedException();
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 move = new Vector3(horizontal, 0, 0);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * (Time.deltaTime * playerSpeed));
 
         if (move != Vector3.zero)
         {
@@ -54,11 +54,17 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && groundedPlayer && jumpsMade < maxJumps))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Vertical") > 0 ))
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            jumpsMade++;
+            if (groundedPlayer && jumpsMade <= maxJumps)
+            {
+                Debug.Log("Going Up");
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                jumpsMade++;
+            }
+            
         }
+        
         if (controller.isGrounded)
         {
             jumpsMade = 0;
