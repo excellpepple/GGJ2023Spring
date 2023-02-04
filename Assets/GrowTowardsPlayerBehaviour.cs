@@ -25,8 +25,7 @@ public class GrowTowardsPlayerBehaviour : MonoBehaviour
             if (Vector3.Distance(lastGrowPos, transform.position) >= rm.growDistance)
             {
                 GetGrowthDirection();
-                rm.Grow(growthDirection);
-                lastGrowPos = transform.position;
+                lastGrowPos = rm.Grow(growthDirection);
             }
         }
     }

@@ -37,7 +37,7 @@ public class RootManager : MonoBehaviour
 	    }
     }
 
-    public void Grow(Vector2 direction)
+    public Vector3 Grow(Vector2 direction)
     {
 	    if (Time.time - lastGrowEvent > growCooldown)
 	    {
@@ -45,11 +45,9 @@ public class RootManager : MonoBehaviour
 		    currentPoint = currentRoot.Grow(n * growDistance);
 		    visualizer.setRootPoint(currentPoint);
 		    lastGrowEvent = Time.time;
+
 	    }
-	    else
-	    {
-		    //Debug.Log("not ready yet");
-	    }
+	    return currentPoint.position;
     }
 
     public void Branch(rootPoint p)
