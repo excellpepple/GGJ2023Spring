@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,15 +229,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6878430171688373856, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0395087
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6878430171688373856, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.0395087
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6878430171688373856, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.0395087
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6878430171688373856, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6878430171688373856, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.79
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6878430171688373856, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -282,6 +282,14 @@ PrefabInstance:
     - target: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: m_Name
       value: CharacterController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694317528647914163, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
+      propertyPath: jumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694317528647914163, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
+      propertyPath: playerSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
