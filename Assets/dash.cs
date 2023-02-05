@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour
     public float dashDuration = 0.5f;
     private float dashTime;
     private Vector2 dashDirection;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private CharacterController characterController;
 
     private void Start()
@@ -42,17 +42,7 @@ public class Dash : MonoBehaviour
 
             // Move the character in the dash direction
             characterController.Move(dashDirection * dashSpeed * Time.deltaTime);
-           
-            // Check if the character has collided with an enemy
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-            foreach (Collider2D collider in colliders)
-            {
-                if (collider.gameObject.CompareTag("Enemy"))
-                {
-                    // If the character has collided with an enemy, destroy the enemy
-                    Destroy(collider.gameObject);
-                }
-            }
+
             // If the dash time has expired, stop the dash
             if (dashTime <= 0)
             {
