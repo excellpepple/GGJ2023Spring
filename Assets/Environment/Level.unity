@@ -231,7 +231,7 @@ MonoBehaviour:
   gim: {fileID: 0}
   player: {fileID: 107817852}
   rootControls: {fileID: 0}
-  offset: {x: 0, y: 0.4, z: -3.77}
+  offset: {x: 0, y: 0.4, z: -5}
 --- !u!1 &107817852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
