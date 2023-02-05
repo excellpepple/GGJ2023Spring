@@ -15,7 +15,7 @@ public class PlayerController : Entity
     private bool jumpButtonPressed = false;
     private int jumpsMade = 0;
     public int maxJumps = 2;
-   
+
     internal void Move(Vector3 vector3)
     {
         throw new NotImplementedException();
@@ -78,18 +78,21 @@ public class PlayerController : Entity
         }
 
 
+
     }
-    public void DecreaseHitPoints()
+    /*public void DecreaseHitPoints()
     {
         hitPoints--;
         if (hitPoints <= 0)
         {
             // Trigger death or game over event
-        }
-    }
+        }*/
 
-    public override void TakeDamage(float damage)
+
+
+    /*public override void TakeDamage(float damage)
     {
         hitPoints -= (int) damage;
-    }
+    }*/
+
 }
