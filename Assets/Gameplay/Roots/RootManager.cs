@@ -76,7 +76,6 @@ public class RootManager : MonoBehaviour
 		    else
 		    {
 			    Debug.Log("reached very top");
-
 		    }
 	    }
 	    else
@@ -113,10 +112,5 @@ public class RootManager : MonoBehaviour
 	    Vector2 n = direction.normalized;
 	    currentPoint = currentRoot.Grow(n * growDistance);
 	    currentPointID = currentRoot.points.Count - 1;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
