@@ -8,6 +8,8 @@ public class Root : MonoBehaviour
 {
 	public List<rootPoint> points;
 	private RootRenderer r;
+	public rootPoint attachmentPoint;
+	public bool isBase;
 	public Root(){
 		points = new List<rootPoint>();
 		//add first point

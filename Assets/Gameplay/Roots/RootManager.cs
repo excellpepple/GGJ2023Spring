@@ -31,6 +31,7 @@ public class RootManager : MonoBehaviour
 	    if (RootType)
 	    {
 		    baseRoot = Instantiate(RootType, transform).GetComponent<Root>();
+		    baseRoot.isBase = true;
 		    currentRoot = baseRoot;
 	    }
 	    else
@@ -63,9 +64,26 @@ public class RootManager : MonoBehaviour
 	//sets the current point to a different one, up or down the root
     public void Traverse(int direction)
     {
-	    Debug.Log("traversing " + direction.ToString());
-	    currentPointID = Mathf.Clamp(currentPointID + direction, 0, currentRoot.points.Count - 1);
-	    currentPoint = currentRoot.points[currentPointID];
+	    //if we are at beginning ot root, going back, traverse to parent
+	    if (direction < 0 && currentPointID == 0)
+	    {
+		    if (currentRoot.isBase == true)
+		    {
+			    currentPoint = currentRoot.attachmentPoint;
+			    currentRoot = currentRoot.gameObject.transform.parent.GetComponent<Root>();
+			    currentPointID = currentRoot.points.IndexOf(currentPoint);
+		    }
+		    else
+		    {
+			    Debug.Log("reached very top");
+
+		    }
+	    }
+	    else
+	    {
+		    currentPointID = Mathf.Clamp(currentPointID + direction, 0, currentRoot.points.Count - 1);
+		    currentPoint = currentRoot.points[currentPointID];
+	    }
 	    visualizer.setRootPoint(currentPoint);
     }
 
@@ -81,6 +99,7 @@ public class RootManager : MonoBehaviour
 		    ).GetComponent<Root>());
 	    //add what was just added
 	    currentRoot = currentPoint.connectedRoots[currentPoint.connectedRoots.Count - 1];
+	    currentRoot.attachmentPoint = currentPoint;
 	    //workaround: need to set position after instantiating (bug IN-31177)
 	    currentRoot.transform.position = newPos;
 	    //set the position of the first point to the same
