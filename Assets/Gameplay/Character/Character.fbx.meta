@@ -3,7 +3,27 @@ guid: c33000fcf091b0f4ebb6ee184eb8f448
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: 265dbae4f17e14696ad3a01479745d08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cape
+    second: {fileID: 2100000, guid: 255bc37c217f04d1dba3c5d2c4cb0d76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: 9def72ece5db3449eacaea8c81d7441f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pistachio
+    second: {fileID: 2100000, guid: 8c6b6a989f61740d8857a9395c743226, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
