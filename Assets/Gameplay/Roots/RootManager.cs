@@ -71,14 +71,19 @@ public class RootManager : MonoBehaviour
 
     public void Branch(rootPoint p, Vector2 direction)
     {
+	    Vector3 newPos = currentPoint.position;
 	    //create a new root at the position of the current RootPoint
 	    currentPoint.connectedRoots.Add(Instantiate(
 			    RootType,
-			    currentPoint.position,
+			    newPos,
 			    Quaternion.identity,
 			    currentRoot.transform
 		    ).GetComponent<Root>());
-	    currentRoot = currentPoint.connectedRoots[currentPoint.connectedRoots.Count-1];
+	    //add what was just added
+	    currentRoot = currentPoint.connectedRoots[currentPoint.connectedRoots.Count - 1];
+	    //workaround: need to set position after instantiating (bug IN-31177)
+	    currentRoot.transform.position = newPos;
+	    //set the position of the first point to the same
 	    Extend(direction);
     }
 
