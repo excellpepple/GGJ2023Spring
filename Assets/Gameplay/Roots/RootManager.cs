@@ -60,14 +60,4 @@ public class RootManager : MonoBehaviour
 	    currentPoint = currentRoot.points[currentPointID];
 	    visualizer.setRootPoint(currentPoint);
     }
-
-    public void Branch(rootPoint p)
-    {
-	    
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
