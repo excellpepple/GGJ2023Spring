@@ -7,7 +7,7 @@ public class PlayerController : Entity
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
+    public bool groundedPlayer;
     public float playerSpeed = 2.0f;
     public float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;

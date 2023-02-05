@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationStateController : MonoBehaviour
 {
     private Animator animator;
-    public CharacterController controller;
+    public PlayerController controller;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +15,7 @@ public class AnimationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isGrounded", controller.groundedPlayer);
         if (Input.GetAxis("Horizontal") != 0)
         {
             animator.SetBool("isRunning", true);
@@ -27,17 +28,19 @@ public class AnimationStateController : MonoBehaviour
 
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
-            Debug.Log("Jumping");
+           
             animator.SetBool("isJumping", true);
+            animator.SetBool("isFalling", true);
+            animator.SetBool("isGrounded", false);
             
         }
         else
         {
             animator.SetBool("isJumping", false);
-
+            animator.SetBool("isFalling", false);
         }
 
-        animator.SetBool("isGrounded", controller.isGrounded);
+        
         
     }
 

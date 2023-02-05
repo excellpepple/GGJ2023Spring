@@ -128,6 +128,7 @@ MonoBehaviour:
   hitPoints: 0
   attackDamage: 0
   hp: 0
+  groundedPlayer: 0
   playerSpeed: 2
   jumpHeight: 1
   maxJumps: 2
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab09d0204b319f44c9544ee7f8f2c916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6878430171688373859}
+  controller: {fileID: 8694317528647914163}
 --- !u!95 &229962496312454188
 Animator:
   serializedVersion: 5
