@@ -1017,7 +1017,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeySwitchCharacterRoots: 9
   mode: 0
-  character: {fileID: 0}
+  rm: {fileID: 0}
+  character: {fileID: 107817852}
 --- !u!4 &1260269800
 Transform:
   m_ObjectHideFlags: 0
