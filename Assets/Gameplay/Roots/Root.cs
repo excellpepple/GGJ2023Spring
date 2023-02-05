@@ -20,7 +20,11 @@ public class Root : MonoBehaviour
 		points.Add(new rootPoint(newPointPosition));
 
 		//refresh root visuals
-		r.RefreshRootVisuals(points);
+		if (r)
+		{
+			r.RefreshRootVisuals(points);
+		}
+
 		return points[points.Count - 1]; //return the newly created point
 	}
 	

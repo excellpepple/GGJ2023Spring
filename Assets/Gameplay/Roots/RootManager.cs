@@ -43,9 +43,17 @@ public class RootManager : MonoBehaviour
     {
 	    if (Time.time - lastGrowEvent > growCooldown)
 	    {
-		    Vector2 n = direction.normalized;
-		    currentPoint = currentRoot.Grow(n * growDistance);
-		    currentPointID = currentRoot.points.Count - 1;
+		    //we only grow the current root if we selected the end, otherwise we branch
+		    if (currentPointID == currentRoot.points.Count - 1)
+		    {
+			    //extend root
+			    Extend(direction);
+		    }
+		    else
+		    {
+			    //create new root and then grow that
+			    Branch(currentPoint, direction);
+		    }
 		    visualizer.setRootPoint(currentPoint);
 		    lastGrowEvent = Time.time;
 	    }
@@ -59,5 +67,37 @@ public class RootManager : MonoBehaviour
 	    currentPointID = Mathf.Clamp(currentPointID + direction, 0, currentRoot.points.Count - 1);
 	    currentPoint = currentRoot.points[currentPointID];
 	    visualizer.setRootPoint(currentPoint);
+    }
+
+    public void Branch(rootPoint p, Vector2 direction)
+    {
+	    Vector3 newPos = currentPoint.position;
+	    //create a new root at the position of the current RootPoint
+	    currentPoint.connectedRoots.Add(Instantiate(
+			    RootType,
+			    newPos,
+			    Quaternion.identity,
+			    currentRoot.transform
+		    ).GetComponent<Root>());
+	    //add what was just added
+	    currentRoot = currentPoint.connectedRoots[currentPoint.connectedRoots.Count - 1];
+	    //workaround: need to set position after instantiating (bug IN-31177)
+	    currentRoot.transform.position = newPos;
+	    //set the position of the first point to the same
+	    currentPoint = currentRoot.points[0];
+	    currentPoint.position = newPos;
+	    Extend(direction);
+    }
+
+    public void Extend(Vector2 direction)
+    {
+	    Vector2 n = direction.normalized;
+	    currentPoint = currentRoot.Grow(n * growDistance);
+	    currentPointID = currentRoot.points.Count - 1;
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
