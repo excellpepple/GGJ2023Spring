@@ -28,7 +28,7 @@ public class RootTester : MonoBehaviour
                 rm.Grow(dv);
                 
             }
-
+            /* commented out because these are also the charaacter controls
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 rm.Grow(Vector2.up);
@@ -44,6 +44,17 @@ public class RootTester : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 rm.Grow(Vector2.right);
+            }
+            */
+            //traversal test
+            //Debug.Log(Input.mouseScrollDelta);
+            if (Input.GetKey(KeyCode.LeftBracket))
+            {
+                rm.Traverse(-1);
+            }
+            if (Input.GetKey(KeyCode.RightBracket))
+            {
+                rm.Traverse(1);
             }
         }
         else
