@@ -84,6 +84,8 @@ public class RootManager : MonoBehaviour
 	    //workaround: need to set position after instantiating (bug IN-31177)
 	    currentRoot.transform.position = newPos;
 	    //set the position of the first point to the same
+	    currentPoint = currentRoot.points[0];
+	    currentPoint.position = newPos;
 	    Extend(direction);
     }
 
