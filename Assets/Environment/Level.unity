@@ -229,12 +229,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 107817852}
-  offset: {x: 0, y: 0, z: -3.77}
+  offset: {x: 0, y: 0.4, z: -3.77}
 --- !u!1 &107817852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
   m_PrefabInstance: {fileID: 182537282}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &107817859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107817852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab95c3f618e273e4f8e6a44dfb79257c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 20
+  dashDuration: 2
 --- !u!1001 &182537282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +318,10 @@ PrefabInstance:
       value: CharacterController
       objectReference: {fileID: 0}
     - target: {fileID: 8694317528647914163, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
+      propertyPath: dashSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694317528647914163, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       propertyPath: jumpHeight
       value: 5
       objectReference: {fileID: 0}
@@ -314,7 +332,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 107817859}
   m_SourcePrefab: {fileID: 100100000, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
 --- !u!1 &223532532
 GameObject:
@@ -367,6 +388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f57e5f5cd22efc4597ac31ee68a4d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Owner: {fileID: 0}
+  damagePoints: 0
+  TargetTag: 
+  Target: {fileID: 0}
+  isShootable: 0
 --- !u!4 &223532535
 Transform:
   m_ObjectHideFlags: 0
@@ -544,8 +570,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258192372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.007, y: -145.9, z: -0.03}
-  m_LocalScale: {x: 0.8274758, y: 4.014108, z: 1.2876756}
+  m_LocalPosition: {x: -0.007, y: -145.9, z: -0.030001}
+  m_LocalScale: {x: 0.8274758, y: 4.014108, z: 4.9872856}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1103083881}
