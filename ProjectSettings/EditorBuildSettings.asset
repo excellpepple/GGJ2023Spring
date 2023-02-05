@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Environment/GUITester.unity
     guid: 3f1561c45e04993409277ce2a29980b1
   - enabled: 1
