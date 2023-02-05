@@ -16,7 +16,7 @@ public class AnimationStateController : MonoBehaviour
     void Update()
     {
         //Decides which buttons are actively pressed
-        bool jumpButtonPressed = Input.GetButtonDown("Jump") ;
+        bool jumpButtonPressed = Input.GetAxis("Vertical") > 0;
         bool walkButtonPressed = Input.GetAxis("Horizontal") != 0;
         bool attackButtonPressed = Input.GetButtonDown("Attack");
         
@@ -43,14 +43,24 @@ public class AnimationStateController : MonoBehaviour
         }
         
         // makes player Idol
-        /*if (isGrounded)
+        if (isGrounded)
         {
             animator.SetBool("isIdle", true);
-        }*/
-        /*else
+        }
+        else
         {
             animator.SetBool("isIdle", false);
-        }*/
+        }
+        
+        // make player Jump
+        if (isGrounded && jumpButtonPressed)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
 
 
 
