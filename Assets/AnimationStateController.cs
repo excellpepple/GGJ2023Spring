@@ -43,10 +43,10 @@ public class AnimationStateController : MonoBehaviour
         }
         
         // makes player Idol
-        if (isGrounded)
+        /*if (isGrounded)
         {
             animator.SetBool("isIdle", true);
-        }
+        }*/
         /*else
         {
             animator.SetBool("isIdle", false);
