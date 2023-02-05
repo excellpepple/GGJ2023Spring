@@ -43,9 +43,17 @@ public class RootManager : MonoBehaviour
     {
 	    if (Time.time - lastGrowEvent > growCooldown)
 	    {
-		    Vector2 n = direction.normalized;
-		    currentPoint = currentRoot.Grow(n * growDistance);
-		    currentPointID = currentRoot.points.Count - 1;
+		    //we only grow the current root if we selected the end, otherwise we branch
+		    if (currentPointID == currentRoot.points.Count - 1)
+		    {
+			    //extend root
+			    Extend(direction);
+		    }
+		    else
+		    {
+			    //create new root and then grow that
+			    Branch(currentPoint, direction);
+		    }
 		    visualizer.setRootPoint(currentPoint);
 		    lastGrowEvent = Time.time;
 	    }
@@ -61,9 +69,24 @@ public class RootManager : MonoBehaviour
 	    visualizer.setRootPoint(currentPoint);
     }
 
-    public void Branch(rootPoint p)
+    public void Branch(rootPoint p, Vector2 direction)
     {
-	    
+	    //create a new root at the position of the current RootPoint
+	    currentPoint.connectedRoots.Add(Instantiate(
+			    RootType,
+			    currentPoint.position,
+			    Quaternion.identity,
+			    currentRoot.transform
+		    ).GetComponent<Root>());
+	    currentRoot = currentPoint.connectedRoots[currentPoint.connectedRoots.Count-1];
+	    Extend(direction);
+    }
+
+    public void Extend(Vector2 direction)
+    {
+	    Vector2 n = direction.normalized;
+	    currentPoint = currentRoot.Grow(n * growDistance);
+	    currentPointID = currentRoot.points.Count - 1;
     }
     // Update is called once per frame
     void Update()
