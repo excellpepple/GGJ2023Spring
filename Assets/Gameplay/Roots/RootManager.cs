@@ -67,7 +67,7 @@ public class RootManager : MonoBehaviour
 	    //if we are at beginning ot root, going back, traverse to parent
 	    if (direction < 0 && currentPointID == 0)
 	    {
-		    if (currentRoot.isBase == true)
+		    if (currentRoot.isBase == false)
 		    {
 			    currentPoint = currentRoot.attachmentPoint;
 			    currentRoot = currentRoot.gameObject.transform.parent.GetComponent<Root>();
