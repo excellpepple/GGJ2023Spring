@@ -20,6 +20,9 @@ public class Entity: MonoBehaviour
 
     /*public void AttackObject(GameObject collisionGameObject)
     {
-        ((Entity) collisionGameObject).TakeDamage(attackDamage);
+        if (collisionGameObject.GetType() == typeof(Entity) )
+        {
+            collisionGameObject.TakeDamage(attackDamage);
+        }
     }*/
 }
