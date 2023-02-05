@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootInputVisualizer
       objectReference: {fileID: 0}
+    - target: {fileID: 2965657894942180002, guid: 750383dde33a34e4f9bcf5842817e758, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3794955902522226026, guid: 750383dde33a34e4f9bcf5842817e758, type: 3}
       propertyPath: m_RootOrder
       value: -1

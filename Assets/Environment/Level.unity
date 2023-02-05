@@ -228,8 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5458b886f4a3a45bd2823bb8cf363d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gim: {fileID: 0}
   player: {fileID: 107817852}
-  offset: {x: 0, y: 0.4, z: -3.77}
+  rootControls: {fileID: 0}
+  offset: {x: 0, y: 0.4, z: -5}
 --- !u!1 &107817852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
@@ -1598,11 +1600,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2370796322520998836, guid: 137d20af562c14aa9a485ad228f8b0f0, type: 3}
       propertyPath: growCooldown
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2370796322520998836, guid: 137d20af562c14aa9a485ad228f8b0f0, type: 3}
       propertyPath: growDistance
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8451433005380522561, guid: 137d20af562c14aa9a485ad228f8b0f0, type: 3}
       propertyPath: m_RootOrder

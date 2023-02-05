@@ -22,8 +22,9 @@ public class GrowTowardsPlayerBehaviour : MonoBehaviour
         if (rm)
         {
             //only grow roots if we moved far away enough from the last root point.
-            if (Vector3.Distance(lastGrowPos, transform.position) >= rm.growDistance)
+            if (Vector2.Distance(new Vector2(lastGrowPos.x, lastGrowPos.y),new Vector2(transform.position.x, transform.position.y)) > rm.growDistance)
             {
+                //Debug.Log("growing:\n lastGrowPos:" + lastGrowPos.ToString() + "\n position: " + transform.position.ToString() + "\n growdistance: " + rm.growDistance.ToString());
                 GetGrowthDirection();
                 lastGrowPos = rm.Grow(growthDirection);
             }

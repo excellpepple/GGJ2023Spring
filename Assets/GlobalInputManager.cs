@@ -14,13 +14,15 @@ public class GlobalInputManager : MonoBehaviour
     public bool mode;
 
     public RootManager rm;
-
     public GameObject character;
+    public GameObject rev;
     //public GameObject
     // Start is called before the first frame update
     void Start()
     {
         rm = FindObjectOfType<RootManager>();
+        rev = FindObjectOfType<RootEditViz>().gameObject;
+        rev.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,6 +35,8 @@ public class GlobalInputManager : MonoBehaviour
                 mode = !mode;
                 character.SetActive(true);
                 character.transform.position = rm.currentPoint.position;
+                if(rev){rev.SetActive(false);}
+                
             }
             
             if (Input.GetKey(KeyCode.UpArrow))
@@ -50,6 +54,8 @@ public class GlobalInputManager : MonoBehaviour
             {
                 character.SetActive(false);
                 mode = !mode;
+                if (rev){rev.SetActive(true);}
+                
             }
         }
         
