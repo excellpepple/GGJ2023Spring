@@ -6,6 +6,8 @@ public class AnimationStateController : MonoBehaviour
 {
     private Animator animator;
     public PlayerController controller;
+
+    public Dash dasher;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class AnimationStateController : MonoBehaviour
         //Checks if we already in any giving state
         bool isJumping = animator.GetBool("isJumping");
         bool isMoving = animator.GetBool("isMoving");
-        bool isDashing = animator.GetBool("isDashing");
+        bool isDashing = dasher.isDashing;
         bool isFalling = animator.GetBool("isFalling");
         bool isGrounded = controller.groundedPlayer;
         bool isIdle = animator.GetBool("isIdle");
@@ -62,6 +64,15 @@ public class AnimationStateController : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
 
+        if (isDashing)
+        {
+            animator.SetBool("isDashing", true);
+
+        }
+        else
+        {
+            animator.SetBool("isDashing", false);
+        }
 
 
     }

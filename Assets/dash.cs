@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour
     public float dashDuration = 0.5f;
     private float dashTime;
     private Vector2 dashDirection;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private CharacterController characterController;
 
     private void Start()
