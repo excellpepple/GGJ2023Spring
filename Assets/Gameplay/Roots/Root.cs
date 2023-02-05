@@ -8,6 +8,8 @@ public class Root : MonoBehaviour
 {
 	public List<rootPoint> points;
 	private RootRenderer r;
+	public rootPoint attachmentPoint;
+	public bool isBase;
 	public Root(){
 		points = new List<rootPoint>();
 		//add first point
@@ -20,7 +22,11 @@ public class Root : MonoBehaviour
 		points.Add(new rootPoint(newPointPosition));
 
 		//refresh root visuals
-		r.RefreshRootVisuals(points);
+		if (r)
+		{
+			r.RefreshRootVisuals(points);
+		}
+
 		return points[points.Count - 1]; //return the newly created point
 	}
 	

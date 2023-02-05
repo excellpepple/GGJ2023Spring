@@ -8,10 +8,12 @@ public class rootPoint{
 	public rootPoint()
 	{
 		position = new Vector2();
+		connectedRoots = new List<Root>();
 	}
 	public rootPoint(Vector2 p)
 	{
 		position = p;
+		connectedRoots = new List<Root>();
 	}
 	public List<Root> connectedRoots;
 }

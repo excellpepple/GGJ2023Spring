@@ -31,6 +31,7 @@ public class RootManager : MonoBehaviour
 	    if (RootType)
 	    {
 		    baseRoot = Instantiate(RootType, transform).GetComponent<Root>();
+		    baseRoot.isBase = true;
 		    currentRoot = baseRoot;
 	    }
 	    else
@@ -43,9 +44,17 @@ public class RootManager : MonoBehaviour
     {
 	    if (Time.time - lastGrowEvent > growCooldown)
 	    {
-		    Vector2 n = direction.normalized;
-		    currentPoint = currentRoot.Grow(n * growDistance);
-		    currentPointID = currentRoot.points.Count - 1;
+		    //we only grow the current root if we selected the end, otherwise we branch
+		    if (currentPointID == currentRoot.points.Count - 1)
+		    {
+			    //extend root
+			    Extend(direction);
+		    }
+		    else
+		    {
+			    //create new root and then grow that
+			    Branch(currentPoint, direction);
+		    }
 		    visualizer.setRootPoint(currentPoint);
 		    lastGrowEvent = Time.time;
 	    }
@@ -55,19 +64,53 @@ public class RootManager : MonoBehaviour
 	//sets the current point to a different one, up or down the root
     public void Traverse(int direction)
     {
-	    Debug.Log("traversing " + direction.ToString());
-	    currentPointID = Mathf.Clamp(currentPointID + direction, 0, currentRoot.points.Count - 1);
-	    currentPoint = currentRoot.points[currentPointID];
+	    //if we are at beginning ot root, going back, traverse to parent
+	    if (direction < 0 && currentPointID == 0)
+	    {
+		    if (currentRoot.isBase == false)
+		    {
+			    currentPoint = currentRoot.attachmentPoint;
+			    currentRoot = currentRoot.gameObject.transform.parent.GetComponent<Root>();
+			    currentPointID = currentRoot.points.IndexOf(currentPoint);
+		    }
+		    else
+		    {
+			    Debug.Log("reached very top");
+		    }
+	    }
+	    else
+	    {
+		    currentPointID = Mathf.Clamp(currentPointID + direction, 0, currentRoot.points.Count - 1);
+		    currentPoint = currentRoot.points[currentPointID];
+	    }
 	    visualizer.setRootPoint(currentPoint);
     }
 
-    public void Branch(rootPoint p)
+    public void Branch(rootPoint p, Vector2 direction)
     {
-	    
+	    Vector3 newPos = currentPoint.position;
+	    //create a new root at the position of the current RootPoint
+	    currentPoint.connectedRoots.Add(Instantiate(
+			    RootType,
+			    newPos,
+			    Quaternion.identity,
+			    currentRoot.transform
+		    ).GetComponent<Root>());
+	    //add what was just added
+	    currentRoot = currentPoint.connectedRoots[currentPoint.connectedRoots.Count - 1];
+	    currentRoot.attachmentPoint = currentPoint;
+	    //workaround: need to set position after instantiating (bug IN-31177)
+	    currentRoot.transform.position = newPos;
+	    //set the position of the first point to the same
+	    currentPoint = currentRoot.points[0];
+	    currentPoint.position = newPos;
+	    Extend(direction);
     }
-    // Update is called once per frame
-    void Update()
+
+    public void Extend(Vector2 direction)
     {
-        
+	    Vector2 n = direction.normalized;
+	    currentPoint = currentRoot.Grow(n * growDistance);
+	    currentPointID = currentRoot.points.Count - 1;
     }
 }
