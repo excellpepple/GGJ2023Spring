@@ -25,9 +25,9 @@ public class AnimationStateController : MonoBehaviour
         bool isMoving = animator.GetBool("isMoving");
         bool isDashing = animator.GetBool("isDashing");
         bool isFalling = animator.GetBool("isFalling");
-        bool isGrounded = animator.GetBool("isGrounded");
+        bool isGrounded = controller.groundedPlayer;
         bool isIdle = animator.GetBool("isIdle");
-        
+        animator.SetBool("isGrounded", isGrounded);
         
         
         // makes walk animation play
@@ -41,6 +41,16 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+        
+        // makes player Idol
+        if (isGrounded)
+        {
+            animator.SetBool("isIdle", true);
+        }
+        /*else
+        {
+            animator.SetBool("isIdle", false);
+        }*/
 
 
 
