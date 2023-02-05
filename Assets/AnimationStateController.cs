@@ -15,37 +15,36 @@ public class AnimationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("isGrounded", controller.groundedPlayer);
-        if (Input.GetAxis("Horizontal") != 0)
+        //Decides which buttons are actively pressed
+        bool jumpButtonPressed = Input.GetButtonDown("Jump") ;
+        bool walkButtonPressed = Input.GetAxis("Horizontal") != 0;
+        bool attackButtonPressed = Input.GetButtonDown("Attack");
+        
+        //Checks if we already in any giving state
+        bool isJumping = animator.GetBool("isJumping");
+        bool isMoving = animator.GetBool("isMoving");
+        bool isDashing = animator.GetBool("isDashing");
+        bool isFalling = animator.GetBool("isFalling");
+        bool isGrounded = animator.GetBool("isGrounded");
+        bool isIdle = animator.GetBool("isIdle");
+        
+        
+        
+        // makes walk animation play
+        if (isGrounded && walkButtonPressed)
         {
-            animator.SetBool("isRunning", true);
-          
-        } else if (Input.GetAxis("Horizontal") == 0)
-        {
-            animator.SetBool("isRunning", false);
+            animator.SetBool("isMoving", true);
             
-        }
-
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
-        {
-           
-            animator.SetBool("isJumping", true);
-            animator.SetBool("isFalling", true);
-            animator.SetBool("isGrounded", false);
             
         }
         else
         {
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isFalling", false);
+            animator.SetBool("isMoving", false);
         }
 
-        
-        
+
+
     }
 
-    private void StopIdle()
-    {
-        animator.SetBool("isIdle", false);
-    }
+   
 }
