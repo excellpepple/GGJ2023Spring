@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpButtonPressed = false;
     private int jumpsMade = 0;
     public int maxJumps = 2;
-    public int hitPoints = 5;
+   
     internal void Move(Vector3 vector3)
     {
         throw new NotImplementedException();
@@ -86,5 +86,10 @@ public class PlayerController : MonoBehaviour
         {
             // Trigger death or game over event
         }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        hitPoints -= (int) damage;
     }
 }
