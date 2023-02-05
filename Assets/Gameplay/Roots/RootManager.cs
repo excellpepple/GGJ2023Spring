@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class RootManager : MonoBehaviour
 	public Root baseRoot; //resisted the temptation to call this RootRoot
 	public Root currentRoot; //the root the player is modifying at the moment
 	public rootPoint currentPoint; //when the root grows, that should be the last point
+	public int currentPointID; //the ID of te currently selected point (so we don't have to find it in the list)
 	private RootInputVisualizer visualizer;
 	
 	//timing
@@ -43,11 +45,20 @@ public class RootManager : MonoBehaviour
 	    {
 		    Vector2 n = direction.normalized;
 		    currentPoint = currentRoot.Grow(n * growDistance);
+		    currentPointID = currentRoot.points.Count - 1;
 		    visualizer.setRootPoint(currentPoint);
 		    lastGrowEvent = Time.time;
-
 	    }
 	    return currentPoint.position;
+    }
+    
+	//sets the current point to a different one, up or down the root
+    public void Traverse(int direction)
+    {
+	    Debug.Log("traversing " + direction.ToString());
+	    currentPointID = Mathf.Clamp(currentPointID + direction, 0, currentRoot.points.Count - 1);
+	    currentPoint = currentRoot.points[currentPointID];
+	    visualizer.setRootPoint(currentPoint);
     }
 
     public void Branch(rootPoint p)
