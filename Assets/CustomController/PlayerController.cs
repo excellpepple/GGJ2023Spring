@@ -15,7 +15,7 @@ public class PlayerController : Entity
     private bool jumpButtonPressed = false;
     private int jumpsMade = 0;
     public int maxJumps = 2;
-
+    public Animator animator;
     internal void Move(Vector3 vector3)
     {
         throw new NotImplementedException();
@@ -25,6 +25,7 @@ public class PlayerController : Entity
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class PlayerController : Entity
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
+            
         }
 
         float horizontal = 0f;

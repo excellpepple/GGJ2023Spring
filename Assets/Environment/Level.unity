@@ -249,6 +249,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 20
   dashDuration: 2
+--- !u!114 &107817866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107817852}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab09d0204b319f44c9544ee7f8f2c916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
 --- !u!1001 &182537282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -336,6 +349,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 107817859}
+    - targetCorrespondingSourceObject: {fileID: 6878430171688373861, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 107817866}
   m_SourcePrefab: {fileID: 100100000, guid: 1eed5e041b10bcc44b1ad5c6f43bda7f, type: 3}
 --- !u!1 &223532532
 GameObject:
